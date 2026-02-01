@@ -1,3 +1,7 @@
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 import pdfplumber
 from io import BytesIO
 
@@ -10,6 +14,10 @@ from langchain_core.prompts import ChatPromptTemplate
 
 # create embeddings
 embedding = OllamaEmbeddings(model="llama3.1")
+
+OLLAMA_ENABLED = os.getenv("OLLAMA_ENABLED", "false").lower() == "true"
+
+print(f"OLLAMA_ENABLED: {OLLAMA_ENABLED}")
 
 # Function to extract text from a PDF file
 def extract_text_from_pdf(file_object) -> str:
@@ -85,6 +93,9 @@ def query_langchain(query: str):
 
 def query_langchain_text(query: str):
     print("Query received:", query)
+    
+    if not OLLAMA_ENABLED:
+        return "LLM disabled (CI mode)"
     
     
     llm = ChatOllama(model="llama3.1", temperature=0)
