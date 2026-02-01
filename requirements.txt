@@ -1,0 +1,11 @@
+langchain
+fastapi[standard]
+langchain-community
+langchain-openai
+langchain-ollama
+python-pdf
+pdfplumber
+langchain-chroma
+chroma
+pytest
+uvicorn[standard]

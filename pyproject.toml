@@ -1,0 +1,19 @@
+[project]
+name = "server"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "chroma>=0.2.0",
+    "fastapi[standard]>=0.128.0",
+    "langchain>=1.2.7",
+    "langchain-chroma>=1.1.0",
+    "langchain-community>=0.4.1",
+    "langchain-ollama>=1.0.1",
+    "langchain-openai>=1.1.7",
+    "pdfplumber>=0.11.9",
+    "pytest>=9.0.2",
+    "python-pdf>=0.40",
+    "uvicorn[standard]>=0.40.0",
+]

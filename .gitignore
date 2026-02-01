@@ -1,0 +1,19 @@
+chroma_langchain_db/
+ __pycache__/
+ env/
+ venv/
+ .env
+ *.pyc
+ *.pyo
+ *.pyd
+ .Python
+ db.sqlite3
+ instance/
+ .pytest_cache/
+ .mypy_cache/
+ .coverage
+ coverage.xml
+ htmlcov/
+ .venv/
+ .DS_Store
+ .idea/ 
