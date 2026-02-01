@@ -38,8 +38,9 @@ jobs:
       - name: Run tests
         env:
           PYTHONPATH: .
+          OLLAMA_ENABLED: false
         run: |
-          pytest --cov=. test/ --cov-report=xml --cov-report=term
+          pytest --cov=app test/ --cov-report=xml --cov-report=term
 
   build:
     needs: test
