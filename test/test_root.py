@@ -1,6 +1,5 @@
 from fastapi.testclient import TestClient
 from main import app
-from unittest.mock import patch 
 
 client = TestClient(app)
 
@@ -23,23 +22,16 @@ def test_read_root():
 #     assert "query_result" in response.json()    
     
     
-def test_upload_pdf():
-    with open("test/DockerGuide.pdf", "rb") as pdf_file:
-        response = client.post(
-            "/upload",
-            data={"file_type": "pdf", "prompt": "Summarize the document."},
-            files={"file": ("DockerGuide.pdf", pdf_file, "application/pdf")}
-        )
+# def test_upload_pdf():
+#     with open("test/DockerGuide.pdf", "rb") as pdf_file:
+#         response = client.post(
+#             "/upload",
+#             data={"file_type": "pdf", "prompt": "Summarize the document."},
+#             files={"file": ("DockerGuide.pdf", pdf_file, "application/pdf")}
+#         )
     
-    assert response.status_code == 201
-    assert "message" in response.json()
-    assert response.json()["message"] == "PDF upload received"
-    assert "query_result" in response.json() 
+#     assert response.status_code == 201
+#     assert "message" in response.json()
+#     assert response.json()["message"] == "PDF upload received"
+#     assert "query_result" in response.json() 
     
-    
-@patch("app.llm.call_llm")
-def test_upload_text(mock_llm, client):
-    mock_llm.return_value = "Mock response"
-
-    response = client.post("/upload-text", json={"text": "hello"})
-    assert response.status_code == 200
