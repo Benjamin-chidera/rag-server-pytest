@@ -36,8 +36,10 @@ jobs:
         continue-on-error: true
 
       - name: Run tests
+        env:
+          PYTHONPATH: .
         run: |
-          pytest --cov=app test/ --cov-report=xml --cov-report=term
+          pytest --cov=. test/ --cov-report=xml --cov-report=term
 
   build:
     needs: test
