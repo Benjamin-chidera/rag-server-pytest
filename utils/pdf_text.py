@@ -6,9 +6,9 @@ import pdfplumber
 from io import BytesIO
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_ollama import OllamaEmbeddings
-from langchain_chroma import Chroma
-from langchain_ollama import ChatOllama
+# from langchain_ollama import OllamaEmbeddings
+# from langchain_chroma import Chroma
+# from langchain_ollama import ChatOllama
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -66,7 +66,7 @@ def query_langchain(query: str):
     docs = vector_store.similarity_search(query, k=3)
     
     
-    llm = ChatOllama(model="llama3.1", temperature=0)
+    llm = ChatOllama(model="llama3.1", temperature=0, num_predict=512)
     output_parser = StrOutputParser()
     
     messages = [
@@ -98,7 +98,7 @@ def query_langchain_text(query: str):
         return "LLM disabled (CI mode)"
     
     
-    llm = ChatOllama(model="llama3.1", temperature=0)
+    llm = ChatOllama(model="llama3.1", temperature=0, num_predict=512)
     output_parser = StrOutputParser()
     
     messages = [
